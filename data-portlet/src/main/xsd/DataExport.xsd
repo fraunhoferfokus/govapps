@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  govapps_data
+  $Id:$
+  %%
+  Copyright (C) 2013 - 2014 Fraunhofer FOKUS / CC ÖFIT
+  %%
+  Copyright (c) 2,013, Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+  All rights reserved.
+  Redistribution and use in source and binary forms, with or without modification,
+  are permitted provided that the following conditions are met:
+  
+  1) Redistributions of source code must retain the above copyright notice, 
+     this list of conditions and the following disclaimer.
+  
+  2) Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+  
+  3) All advertising materials mentioning features or use of this software must 
+     display the following acknowledgement: 
+     This product includes software developed by Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT.
+  
+  4) Neither the name of the organization nor the names of its contributors may 
+     be used to endorse or promote products derived from this software without 
+     specific prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER ''AS IS'' AND ANY EXPRESS OR 
+  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL 
+  Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
+  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  #L%
+  -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://oeffentliche-it.de/GovApps-Export"
+	xmlns:tns="http://oeffentliche-it.de/GovApps-Export" elementFormDefault="qualified">
+    <complexType name="ApplicationType">
+        <annotation>
+        	<documentation>Ein App-Eintrag</documentation>
+        </annotation>
+        <sequence>
+    		<element name="ID" type="long">
+    			<annotation>
+    				<documentation>Die System-interne eindeutige ID der App</documentation>
+    			</annotation></element>
+    		<element name="RelatedTo" type="long">
+    		<annotation>
+            <documentation>Die System-interne eindeutige ID der übergeordneten App, wenn es sich um eine abgeleitete App ist</documentation>
+          </annotation>
+    		</element>
+    		<element name="Name" type="string">
+    		<annotation>
+            <documentation>Der Name der App</documentation>
+          </annotation>
+    		</element>
+    		<element name="Logo" type="base64Binary">
+    		<annotation>
+            <documentation>Das Logo der App</documentation>
+          </annotation>
+    		</element>
+    		<element name="Description" type="string">
+    		<annotation>
+            <documentation>Die textuelle Beschreibung der App</documentation>
+          </annotation>
+    		</element>
+    		<element name="Developer" type="string">
+    		<annotation>
+            <documentation>Angaben zum Entwickler der App</documentation>
+          </annotation>
+    		</element>
+    		<element name="Issuer" type="string">
+    		<annotation>
+            <documentation>Angaben zum Herausgeber der App</documentation>
+          </annotation>
+    		</element>
+    		<element name="TargetOS" type="string">
+    		<annotation>
+            <documentation>Angaben zum Betriebssystem unter dem die App lauffähig ist</documentation>
+          </annotation>
+    		</element>
+    		<element name="TargetDevice" type="string">
+    		<annotation>
+            <documentation>Angaben zur Geräteklasse unter der die App lauffähig ist (Komma separierte Liste)</documentation>
+          </annotation>
+    		</element>
+    		<element name="License" type="string">
+    		<annotation>
+            <documentation>Angaben zur Open-Data Lizenz (falls eine Open-Data Verknüpfung besteht)</documentation>
+          </annotation>
+    		</element>
+    		<element name="Regions" type="string">
+    		<annotation>
+            <documentation>Angaben zur regionalen Einordnung der App (Komma separierte Liste)</documentation>
+          </annotation>
+    		</element>
+    		<element name="Languages" type="string">
+    		<annotation>
+            <documentation>Angaben unterstützter Sprachen der App (Komma separierte Liste)</documentation>
+          </annotation>
+    		</element>
+    		<element name="Categories" type="string">
+    		<annotation>
+            <documentation>Angaben zugeordneter Kategorisierungen der App (Komma separierte Liste)</documentation>
+          </annotation>
+    		</element>
+    		<element name="RegisteredDate" type="long">
+    		<annotation>
+            <documentation>Datum der Erstregistrierung der App</documentation>
+          </annotation>
+    		</element>
+    		<element name="LastModifiedDate" type="long">
+    		<annotation>
+            <documentation>Datum der letzten Modifikation des App-Eintrags</documentation>
+          </annotation>
+    		</element>
+    		<element name="Size" type="int">
+    		<annotation>
+            <documentation>Größe der App (in bytes)</documentation>
+          </annotation>
+    		</element>
+    		<element name="Fee" type="int">
+    		<annotation>
+            <documentation>Kosten der App (in €/ct.)</documentation>
+          </annotation>
+    		</element>
+    		<element name="Entitlements"
+    			type="tns:EntitlementListType">
+    			<annotation>
+            <documentation>Angaben zu Berechtigungen</documentation>
+          </annotation>
+    		</element>
+    		<element name="Links"
+          type="tns:LinkListType">
+          <annotation>
+            <documentation>Angaben zu Verweisen/Referenzierungen der App</documentation>
+          </annotation>
+        </element>
+        <element name="Media"
+          type="tns:MediaListType">
+          <annotation>
+            <documentation>Liste von Mediendaten der App</documentation>
+          </annotation>
+        </element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="ApplicationListType">
+        <annotation>
+        	<documentation>Eine Liste der Apps des Benutzers</documentation>
+        </annotation>
+        <sequence>
+        <element name="Appplication" type="tns:ApplicationType" maxOccurs="unbounded" minOccurs="0"></element>
+      </sequence>
+    </complexType>
+    
+    <complexType name="EntitlementType">
+     <annotation>
+          <documentation>Eine angeforderte Berechtigung einer App</documentation>
+     </annotation>
+      <sequence>
+        <element name="Name" type="string"></element>
+        <element name="Value" type="string"></element>
+      </sequence>
+    </complexType>
+    
+    
+    
+    <complexType name="EntitlementListType">
+            <annotation>
+          <documentation>Eine Liste der angeforderten Berechtigungen einer App</documentation>
+        </annotation>
+      <sequence>
+        <element name="Entitlement" type="tns:EntitlementType" maxOccurs="unbounded" minOccurs="0"></element>
+      </sequence>
+    </complexType>
+    
+    <complexType name="LinkType">
+    <annotation>
+          <documentation>Eine Referenz zu einer Präsenz (z.B. Website) einer App</documentation>
+     </annotation>
+      <sequence>
+        <element name="Name" type="string"></element>
+        <element name="Value" type="string"></element>
+      </sequence>
+    </complexType>
+    
+    
+    
+    <complexType name="LinkListType">
+    <annotation>
+          <documentation>Eine Liste von Verweisen/Referenzierungen einer App</documentation>
+     </annotation>
+      <sequence>
+        <element name="Link" type="tns:LinkType" maxOccurs="unbounded" minOccurs="0"></element>
+      </sequence>
+    </complexType>
+    
+    <complexType name="MediaType">
+    <annotation>
+          <documentation>Eine Medienelement (z.B. Screenshot) einer App</documentation>
+     </annotation>
+      <sequence>
+        <element name="Name" type="string"></element>
+        <element name="Value" type="base64Binary"></element>
+      </sequence>
+    </complexType>
+    
+    
+    
+    <complexType name="MediaListType">
+    <annotation>
+          <documentation>Eine Liste von Medienelementen einer App</documentation>
+     </annotation>
+      <sequence>
+        <element name="Media" type="tns:MediaType" maxOccurs="unbounded" minOccurs="0"></element>
+      </sequence>
+    </complexType>
+    
+    <element name="GovAppsExport" type="tns:ApplicationListType">
+    	<annotation>
+    		<documentation>Das Wurzelelement eines exportierten Datums</documentation>
+    	</annotation></element>
+</schema>

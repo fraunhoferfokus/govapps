@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  govapps_data
+  $Id:$
+  %%
+  Copyright (C) 2013 - 2014 Fraunhofer FOKUS / CC ÖFIT
+  %%
+  Copyright (c) 2,013, Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+  All rights reserved.
+  Redistribution and use in source and binary forms, with or without modification,
+  are permitted provided that the following conditions are met:
+  
+  1) Redistributions of source code must retain the above copyright notice, 
+     this list of conditions and the following disclaimer.
+  
+  2) Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+  
+  3) All advertising materials mentioning features or use of this software must 
+     display the following acknowledgement: 
+     This product includes software developed by Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT.
+  
+  4) Neither the name of the organization nor the names of its contributors may 
+     be used to endorse or promote products derived from this software without 
+     specific prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER ''AS IS'' AND ANY EXPRESS OR 
+  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL 
+  Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+  LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
+  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  #L%
+  -->
+
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="de.fraunhofer.fokus.movepla">
+    <author>jpa</author>
+    <namespace>mvp</namespace>
+
+    <entity name="Application" local-service="true" remote-service="true">
+
+        <!-- PK fields -->
+        <column name="applicationId" type="long" primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"            type="long" />
+        <column name="userId"               type="long" />
+        <column name="createDate"           type="Date" />
+        <column name="modifiedDate"         type="Date" />
+
+        <!-- Other fields -->
+        <column name="name"                 type="String" />
+        <column name="description"          type="String" />
+        <column name="version"              type="String" />
+        <column name="versionInformation"   type="String" />
+        <column name="size"                 type="int" />
+
+        <column name="firstPublishingDate"      type="Date" />
+        <column name="lastModifiedDate"         type="Date" />
+
+        <column name="logoImageId"          type="long" />
+        <column name="fee"                  type="int" />
+        <column name="targetOS"             type="String" />
+        <column name="minTargetOSVersion"   type="int" />
+        <column name="targetCategory"       type="String" />
+        <column name="lifeCycleStatus"      type="int" />
+        <column name="verifiedDate"         type="Date" />
+        
+        <column name="categoryString"       type="String" />
+        <column name="regionString"         type="String" />        
+        <column name="lifeCycleStatusString" type="String" />
+
+        <column name="legalDetails"         type="String" />
+        <column name="developer"            type="String" />
+
+        <!-- Logging -->
+        <column name="detailsViewed"           type="long" />
+        <column name="linkClicked"             type="long" />
+        
+        <!-- open data -->
+        <column name="useOpenData"            type="int" />
+        <column name="Sector"                 type="String" />
+        <column name="License"                type="String" />
+
+        <!-- Relations -->
+        <column name="categories"            type="Collection"  entity="Category"    mapping-table="Application_Category" />
+        <column name="region"                type="Collection"  entity="Region"      mapping-table="Application_Region"  />
+        <!-- links AND open data -->
+        <column name="links"                 type="Collection"  entity="Link"        mapping-key="applicationId" />
+        <column name="media"                 type="Collection"  entity="MultiMedia"  mapping-key="applicationId"  />
+        <column name="languages"               type="Collection"  entity="Language"    mapping-table="Application_Language"  />
+        <column name="applicationEntitlement"  type="Collection" entity="Application_Entitlement" mapping-key="applicationId" />
+        <column name="relatedApplications"   type="Collection" entity="RelatedApplications" mapping-key="applicationId" />
+        <column name="relatedApplicationId"    type="String" />
+        <column name="newVersionId"           type="long" />
+        <column name="oldVersionId"           type="long" />
+        <!--
+        open data relation: 1:n  
+        <column name="open_data"              type="Collection"  entity="open_data"        mapping-key="applicationId" />
+         -->
+        <!-- Order -->
+        <order by="asc">
+            <order-column name="name" />
+        </order>
+
+        <!-- Finder methods -->
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+        <finder name="cu" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="userId" />
+        </finder>
+        <finder name="cl" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="lifeCycleStatus" comparator=">=" />
+        </finder>
+        <finder name="ml" return-type="Collection">
+            <finder-column name="modifiedDate"  comparator=">=" />            
+            <finder-column name="lifeCycleStatus" />
+        </finder>
+        <finder name="m" return-type="Collection">
+            <finder-column name="modifiedDate"  comparator=">=" />
+        </finder>
+        <finder name="m2" return-type="Collection">
+            <finder-column name="modifiedDate"  comparator="&lt;"  />            
+        </finder>
+        <finder name="detailsViewed" return-type="Collection">
+            <finder-column name="detailsViewed" comparator=">=" />
+        </finder>
+        <finder name="linkClicked" return-type="Collection">
+            <finder-column name="linkClicked" comparator=">=" />
+        </finder>
+        <finder name="useOpenData" return-type="Collection">
+            <finder-column name="useOpenData" />
+        </finder>
+    </entity>
+    
+    
+    <entity name="RelatedApplications" local-service="true" remote-service="true">
+        <!-- PK fields -->
+        <column name="RelatedApplicationsID" type="long" primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"            type="long" />
+        <column name="userId"               type="long" />
+        <column name="createDate"           type="Date" />
+        <column name="modifiedDate"         type="Date" />
+
+        <!-- Relations -->
+        <column name="applicationId"        type="long" />
+        <column name="applicationId2"        type="long" />
+
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+        <finder name="ca" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="applicationId" />
+        </finder>
+        <finder name="ca2" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="applicationId2" />
+        </finder>
+        <finder name="a" return-type="Collection">
+            <finder-column name="applicationId" />
+        </finder>
+        <finder name="a2" return-type="Collection">
+            <finder-column name="applicationId2" />
+        </finder>
+    </entity>
+
+    <entity name="Application_Entitlement" local-service="true" remote-service="true">
+
+        <!-- PK fields -->
+        <column name="applicationEntitlementID" type="long" primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"            type="long" />
+        <column name="userId"               type="long" />
+        <column name="createDate"           type="Date" />
+        <column name="modifiedDate"         type="Date" />
+
+        <!-- Other fields -->
+        <column name="name"                 type="String" />
+        <column name="motivation"           type="String" />
+
+        <!-- Relations -->
+        <column name="applicationId"        type="long" />
+        <column name="entitlementId"        type="long" />
+
+        <!-- Finder methods -->
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+        <finder name="ca" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="applicationId" />
+        </finder>
+        <finder name="ce" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="entitlementId" />
+        </finder>
+        <finder name="cae" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="applicationId" />
+            <finder-column name="entitlementId" />
+        </finder>
+    </entity>
+    
+    
+    <entity name="Language" local-service="true" remote-service="true" >
+
+        <!-- PK fields -->
+        <column name="LanguageId"               type="long"  primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"                type="long" />
+        <column name="userId"                   type="long" />
+        <column name="createDate"               type="Date" />
+        <column name="modifiedDate"             type="Date" />
+
+        <!-- Other fields -->
+        <column name="languageName"             type="String" />
+        <column name="languageAbbreviation"     type="String" />
+
+        <!-- Relations -->
+        <column name="associatedApplications" type="Collection" entity="Application" mapping-table="Application_Language" />
+
+        <!-- Finder methods -->
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+        <finder name="languageName" return-type="Language" unique="true">
+            <finder-column name="languageName" />
+        </finder>
+    </entity>
+
+    <entity name="Category" local-service="true" remote-service="true">
+        <!-- PK fields -->
+        <column name="categoryId"       type="long"  primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"        type="long" />
+        <column name="userId"           type="long" />
+        <column name="createDate"       type="Date" />
+        <column name="modifiedDate"     type="Date" />
+
+        <!-- Other fields -->
+        <column name="categoryName"     type="String" />        
+        
+<!--        <column name="parentCategories" type="Collection" mapping-key="categoryId" entity="Category" />
+        <column name="childCategories"  type="Collection" entity="Category" mapping-key="categoryId" />
+        <column name="childCategories"        type="Collection" entity="Category"    mapping-table="Verteilungsplattform_Category_Category" />
+ -->        
+        <!-- Relations -->
+        <column name="parentCategory"   type="long" />
+        <column name="associatedApplications" type="Collection" entity="Application" mapping-table="Application_Category" />
+
+        <!-- Finder methods -->
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+        <finder name="cp" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="parentCategory" />
+        </finder>
+        <finder name="categoryName" return-type="Category" unique="true">
+            <finder-column name="categoryName" />
+        </finder>
+    </entity>
+
+    
+    <entity name="Region" local-service="true" remote-service="true">
+
+        <!-- PK fields -->
+        <column name="regionId"             type="long"  primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"            type="long" />
+        <column name="userId"               type="long" />
+        <column name="createDate"           type="Date" />
+        <column name="modifiedDate"         type="Date" />
+
+        <!-- Other fields -->
+        <column name="name"                 type="String" />
+        <column name="ags"                  type="int" />
+        <column name="coordniates_x"        type="double" />
+        <column name="coordniates_y"        type="double" />
+
+        <!-- Relations -->
+        <column name="parentRegion"   type="long" />        
+        <column name="associatedApplications" type="Collection" entity="Application" mapping-table="Application_Region" />
+
+        <!-- Finder methods -->
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+        <finder name="cp" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="parentRegion" />
+        </finder>
+        <finder name="regionName" return-type="Region" unique="true">
+            <finder-column name="name" />
+        </finder>
+    </entity>
+
+    
+    <entity name="MultiMedia" local-service="true" remote-service="true">
+
+        <!-- PK fields -->
+        <column name="multiMediaId"         type="long"  primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"            type="long" />
+        <column name="userId"               type="long" />
+        <column name="createDate"           type="Date" />
+        <column name="modifiedDate"         type="Date" />
+
+        <!-- Other fields -->
+        <column name="name"                 type="String" />
+        <column name="type"                 type="int" />
+        <column name="imageId"                  type="long" />
+
+        <!-- Relations -->
+        <column name="applicationId"        type="long" />
+
+        <!-- Finder methods -->
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+        <finder name="ca" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="applicationId" />      
+        </finder>
+        <finder name="cai" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="applicationId" />      
+            <finder-column name="imageId" />      
+        </finder>
+        <finder name="app" return-type="Collection" >
+            <finder-column name="applicationId" />      
+        </finder>
+        <finder name="image" return-type="Collection" >
+            <finder-column name="imageId" />      
+        </finder>
+    </entity>
+    
+    <entity name="Link" local-service="true" remote-service="true" >
+        <!-- PK fields -->
+        <column name="linkId"            type="long" primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"            type="long" />
+        <column name="userId"               type="long" />
+        <column name="createDate"           type="Date" />
+        <column name="modifiedDate"         type="Date" />
+
+        <!-- Other fields -->
+        <column name="displayName"   type="String" />
+        <column name="type"          type="int" />
+        <column name="url"           type="String" />
+        
+        <!-- Relations -->
+        <column name="applicationId"  type="long" />
+
+        <!-- Finder methods -->
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+        
+        <finder name="ca" return-type="Collection">
+            <finder-column name="companyId" />
+            <finder-column name="applicationId" />      
+        </finder>
+
+        <finder return-type="Collection" name="app">
+            <finder-column name="applicationId" />      
+        </finder>
+        
+        <finder return-type="Collection" name="byType">
+            <finder-column name="type" />      
+        </finder>
+        
+    </entity>
+    
+
+
+    
+    <entity name="Entitlement" local-service="true" remote-service="true" >
+
+        <!-- PK fields -->
+        <column name="entitlementId"   type="long" primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"          type="long" />
+        <column name="userId"             type="long" />
+        <column name="createDate"         type="Date" />
+        <column name="modifiedDate"       type="Date" />
+
+        <!-- Other fields -->
+        <column name="entitlementName" type="String" />
+        <column name="explanation"     type="String" />
+        <column name="estimation"      type="String" />
+        
+        <!-- Relations -->
+        <column name="associatedApplications" type="Collection" entity="Application_Entitlement" mapping-key="entitlementId" />
+
+        <!-- Finder methods -->
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+    </entity>
+
+    
+    <entity name="LegalDetails" local-service="true" remote-service="true" >
+
+        <!-- PK fields -->
+        <column name="legalDetailsId"     type="long"    primary="true" />
+
+        <!-- Audit fields -->
+        <column name="companyId"          type="long" />
+        <column name="userId"             type="long" />
+        <column name="createDate"         type="Date" />
+        <column name="modifiedDate"       type="Date" />
+
+        <!-- Other fields -->
+        <column name="name"               type="String" />
+        <column name="valueAddedTaxNo"    type="String" />
+        <column name="registrationCourt"  type="String" />
+        <column name="legalForm"          type="String" /> 
+
+        <!-- Contact fields -->
+        <column name="address"            type="String" /> 
+        <column name="telephone"          type="String" /> 
+        <column name="email"              type="String" /> 
+        <column name="URL"                type="String" /> 
+        <column name="fax"                type="String" /> 
+       
+        <!-- Finder methods -->
+        <finder name="c" return-type="Collection">
+            <finder-column name="companyId" />
+        </finder>
+    </entity>   
+    
+    
+    
+    <entity name="Logging" local-service="true" remote-service="false" >
+
+        <!-- PK fields -->
+        <column name="loggingId"               type="long"  primary="true" />
+
+        <!-- Audit fields -->
+        <column name="createDate"               type="Date" />
+        <column name="modifiedDate"             type="Date" />
+
+        <!-- Other fields -->
+        <column name="isSimpleSearch"           type="Boolean" />
+        <column name="searchString"             type="String" />
+        <column name="categoryIDString"         type="String" />
+        <column name="regionIDString"           type="String" />
+        <column name="entitlementIDString"      type="String" />
+        <column name="targetOS"                 type="String" />        
+        <column name="fee"                      type="int" />
+        <column name="targetCategory"           type="String" />
+        <column name="passel"                   type="long" />
+
+        <!-- Finder methods -->
+        <finder name="all" return-type="Collection">
+            <finder-column name="searchString" />
+            <finder-column name="categoryIDString" />
+            <finder-column name="regionIDString" />
+            <finder-column name="entitlementIDString" />
+            <finder-column name="targetOS" />
+            <finder-column name="fee" />
+            <finder-column name="targetCategory" />
+        </finder>
+        <finder name="searchString" return-type="Collection">
+            <finder-column name="searchString" />
+        </finder>
+        <finder name="categoryIDString" return-type="Collection">
+            <finder-column name="categoryIDString" />
+        </finder>
+        <finder name="regionIDString" return-type="Collection">
+            <finder-column name="regionIDString" />
+        </finder>
+        <finder name="regionentitlementIDStringIDString" return-type="Collection">
+            <finder-column name="entitlementIDString" />
+        </finder>
+        <finder name="targetOS" return-type="Collection">
+            <finder-column name="targetOS" />
+        </finder>
+        <finder name="fee" return-type="Collection">
+            <finder-column name="fee" />
+        </finder>
+        <finder name="targetCategory" return-type="Collection">
+            <finder-column name="targetCategory" />
+        </finder>
+        <finder name="passel" return-type="Collection">
+            <finder-column name="passel" comparator=">=" />
+        </finder>
+    </entity>
+    
+   
+     <entity name="OGPD_Entity" local-service="true" remote-service="true" />
+ 
+</service-builder>

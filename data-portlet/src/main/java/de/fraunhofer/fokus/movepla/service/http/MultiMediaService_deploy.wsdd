@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_mvp_MultiMediaService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_MultiMediaSoap" type="java:de.fraunhofer.fokus.movepla.model.MultiMediaSoap[]" innerType="cmp-ns:MultiMediaSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:MultiMediaSoap" type="java:de.fraunhofer.fokus.movepla.model.MultiMediaSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="countMultiMedias" qname="operNS:countMultiMedias" returnQName="countMultiMediasReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="findByc" qname="operNS:findByc" returnQName="findBycReturn" returnType="rtns:ArrayOf_tns2_MultiMediaSoap" returnItemType="tns2:MultiMediaSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="countMultiMedias findByc" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.MultiMediaServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="MultiMediaServiceSoap" />
+		<parameter name="wsdlServiceElement" value="MultiMediaServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_MultiMediaService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+</deployment>

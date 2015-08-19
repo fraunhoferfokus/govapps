@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<!--
+  #%L
+  govapps_data
+  $Id:$
+  %%
+  Copyright (C) 2013 - 2014 Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT
+  %%
+  Copyright (c) 2,013, Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+  All rights reserved.
+  Redistribution and use in source and binary forms, with or without modification,
+  are permitted provided that the following conditions are met:
+  
+  1) Redistributions of source code must retain the above copyright notice, 
+     this list of conditions and the following disclaimer.
+  
+  2) Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+  
+  3) All advertising materials mentioning features or use of this software must 
+     display the following acknowledgement: 
+     This product includes software developed by Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT.
+  
+  4) Neither the name of the organization nor the names of its contributors may 
+     be used to endorse or promote products derived from this software without 
+     specific prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER ''AS IS'' AND ANY EXPRESS OR 
+  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT BE LIABLE FOR ANY DIRECT, INDIRECT, 
+  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  #L%
+  -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="de.fraunhofer.fokus.movepla.model.Application" />
+	<import class="de.fraunhofer.fokus.movepla.model.Application_Entitlement" />
+	<import class="de.fraunhofer.fokus.movepla.model.Category" />
+	<import class="de.fraunhofer.fokus.movepla.model.Entitlement" />
+	<import class="de.fraunhofer.fokus.movepla.model.Language" />
+	<import class="de.fraunhofer.fokus.movepla.model.LegalDetails" />
+	<import class="de.fraunhofer.fokus.movepla.model.Link" />
+	<import class="de.fraunhofer.fokus.movepla.model.Logging" />
+	<import class="de.fraunhofer.fokus.movepla.model.MultiMedia" />
+	<import class="de.fraunhofer.fokus.movepla.model.OGPD_Entity" />
+	<import class="de.fraunhofer.fokus.movepla.model.Region" />
+	<import class="de.fraunhofer.fokus.movepla.model.RelatedApplications" />
+	<class name="de.fraunhofer.fokus.movepla.model.impl.ApplicationImpl" table="mvp_Application">
+		<cache usage="read-write" />
+		<id name="applicationId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="version" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="versionInformation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="size" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="size_" />
+		<property name="firstPublishingDate" type="org.hibernate.type.TimestampType" />
+		<property name="lastModifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="logoImageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="fee" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="targetOS" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="minTargetOSVersion" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="targetCategory" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lifeCycleStatus" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="verifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="categoryString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="regionString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lifeCycleStatusString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="legalDetails" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="developer" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="detailsViewed" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="linkClicked" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="useOpenData" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="Sector" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="License" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="relatedApplicationId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="newVersionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="oldVersionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.Application_EntitlementImpl" table="mvp_Application_Entitlement">
+		<cache usage="read-write" />
+		<id name="applicationEntitlementID" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="motivation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="applicationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="entitlementId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.CategoryImpl" table="mvp_Category">
+		<cache usage="read-write" />
+		<id name="categoryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="categoryName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="parentCategory" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.EntitlementImpl" table="mvp_Entitlement">
+		<cache usage="read-write" />
+		<id name="entitlementId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="entitlementName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="explanation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="estimation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.LanguageImpl" table="mvp_Language">
+		<cache usage="read-write" />
+		<id name="LanguageId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="languageName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="languageAbbreviation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.LegalDetailsImpl" table="mvp_LegalDetails">
+		<cache usage="read-write" />
+		<id name="legalDetailsId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="valueAddedTaxNo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="registrationCourt" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="legalForm" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="telephone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="URL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fax" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.LinkImpl" table="mvp_Link">
+		<cache usage="read-write" />
+		<id name="linkId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="displayName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="type_" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="applicationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.LoggingImpl" table="mvp_Logging">
+		<cache usage="read-write" />
+		<id name="loggingId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="isSimpleSearch" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="searchString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="categoryIDString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="regionIDString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="entitlementIDString" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="targetOS" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fee" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="targetCategory" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="passel" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.MultiMediaImpl" table="mvp_MultiMedia">
+		<cache usage="read-write" />
+		<id name="multiMediaId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="type_" />
+		<property name="imageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="applicationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.RegionImpl" table="mvp_Region">
+		<cache usage="read-write" />
+		<id name="regionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ags" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="coordniates_x" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="coordniates_y" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="parentRegion" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="de.fraunhofer.fokus.movepla.model.impl.RelatedApplicationsImpl" table="mvp_RelatedApplications">
+		<cache usage="read-write" />
+		<id name="RelatedApplicationsID" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="applicationId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="applicationId2" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>

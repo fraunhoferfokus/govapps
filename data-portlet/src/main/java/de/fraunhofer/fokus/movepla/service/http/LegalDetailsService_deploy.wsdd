@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_mvp_LegalDetailsService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.LegalDetailsServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="LegalDetailsServiceSoap" />
+		<parameter name="wsdlServiceElement" value="LegalDetailsServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_LegalDetailsService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+</deployment>

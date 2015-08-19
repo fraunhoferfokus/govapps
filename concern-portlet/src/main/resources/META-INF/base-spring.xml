@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!--
+  #%L
+  govapps_concern
+  $Id:$
+  %%
+  Copyright (C) 2013 - 2014 Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT
+  %%
+  Copyright (c) 2,013, Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+  All rights reserved.
+  Redistribution and use in source and binary forms, with or without modification,
+  are permitted provided that the following conditions are met:
+  
+  1) Redistributions of source code must retain the above copyright notice, 
+     this list of conditions and the following disclaimer.
+  
+  2) Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+  
+  3) All advertising materials mentioning features or use of this software must 
+     display the following acknowledgement: 
+     This product includes software developed by Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT.
+  
+  4) Neither the name of the organization nor the names of its contributors may 
+     be used to endorse or promote products derived from this software without 
+     specific prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER ''AS IS'' AND ANY EXPRESS OR 
+  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT BE LIABLE FOR ANY DIRECT, INDIRECT, 
+  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  #L%
+  -->
+
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+	<bean class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.spring.aop.ServiceBeanAutoProxyCreator" />
+		<constructor-arg>
+			<map>
+				<entry key="methodInterceptor" value-ref="serviceAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.spring.bean.BeanReferenceAnnotationBeanPostProcessor" />
+	</bean>
+	<bean class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.spring.context.PortletBeanFactoryCleaner" />
+	</bean>
+	<bean id="portletClassLoader" class="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" factory-method="getClassLoader" />
+	<bean id="servletContextName" class="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" factory-method="getServletContextName" />
+	<bean id="basePersistence" abstract="true">
+		<property name="dataSource" ref="liferayDataSource" />
+		<property name="sessionFactory" ref="liferaySessionFactory" />
+	</bean>
+	<bean id="serviceAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.security.pacl.PACLAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="nextMethodInterceptor" value-ref="serviceMonitorAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="serviceMonitorAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.monitoring.statistics.service.ServiceMonitorAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="monitoringDestinationName" value="liferay/monitoring" />
+				<entry key="nextMethodInterceptor" value-ref="asyncAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="asyncAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.messaging.async.AsyncAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="defaultDestinationName" value="liferay/async_service" />
+				<entry key="nextMethodInterceptor" value-ref="threadLocalCacheAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="threadLocalCacheAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.cache.ThreadLocalCacheAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="nextMethodInterceptor" value-ref="bufferedIncrementAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="bufferedIncrementAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.increment.BufferedIncrementAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="nextMethodInterceptor" value-ref="indexableAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="indexableAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.search.IndexableAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="nextMethodInterceptor" value-ref="transactionAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="transactionAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.spring.transaction.TransactionInterceptor" />
+		<constructor-arg>
+			<map>
+				<entry key="platformTransactionManager" value-ref="liferayTransactionManager" />
+				<entry key="transactionAttributeSource" value-ref="transactionAttributeSource" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="transactionAttributeSource" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.spring.transaction.AnnotationTransactionAttributeSource" />
+	</bean>
+</beans>

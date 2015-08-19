@@ -1,0 +1,238 @@
+/*
+ * #%L
+ * govapps_concern
+ * $Id:$
+ * %%
+ * Copyright (C) 2013 - 2014 Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT
+ * %%
+ * Copyright (c) 2,013, Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ * 
+ * 1) Redistributions of source code must retain the above copyright notice, 
+ *    this list of conditions and the following disclaimer.
+ * 
+ * 2) Redistributions in binary form must reproduce the above copyright notice, 
+ *    this list of conditions and the following disclaimer in the documentation 
+ *    and/or other materials provided with the distribution.
+ * 
+ * 3) All advertising materials mentioning features or use of this software must 
+ *    display the following acknowledgement: 
+ *    This product includes software developed by Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT.
+ * 
+ * 4) Neither the name of the organization nor the names of its contributors may 
+ *    be used to endorse or promote products derived from this software without 
+ *    specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER ''AS IS'' AND ANY EXPRESS OR 
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+ * IN NO EVENT SHALL 
+ * Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * #L%
+ */
+
+
+.searchresult {
+	float:left;
+}
+.searchresult li, .searchresult_entitlements li {
+	list-style:none;
+	float:left;
+	padding:5px;
+}
+
+
+.container-fluid {
+	padding:0;
+}
+
+#app-details .span8 .row-fluid{
+	margin-bottom:20px;
+}
+
+#app-details .span8 .row-fluid .span12 {
+		padding:15px;
+}
+
+.container-fluid .span9, .accordion .filter,#app-details .span4 .row-fluid .accordion,#app-details .span8 .row-fluid, #app_detail_tabs{
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2) !important;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2)) !important;
+  background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2) !important;
+  background-image: -o-linear-gradient(top, #ffffff, #f2f2f2) !important;
+  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2) !important;
+  background-repeat: repeat-x;
+  border: 1px solid #d4d4d4;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+  *zoom: 1;
+ 	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.span12 mainview {
+	padding:0!important;
+}
+
+.searchresult, .searchresult_entitlements{
+	margin:0 !important;
+	padding:20px;
+}
+.searchresult li, .searchresult_entitlements li {
+	padding:20px 0px 15px 0;
+	border-bottom:1px inset#aaa;
+	width:100%;
+}
+
+.searchresult.appiconimg, .searchresult_entitlements.appiconimg{
+	float:left;
+	margin-right:20px;
+}
+
+
+.accordion .filter .accordion-inner {
+	padding:15px;
+}
+.accordion .filter .accordion-inner ul{
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+.container-fluid {
+	padding:0 !important;
+}
+
+.separator-top {
+	margin-top: 10px;
+}
+
+#filter1 label  {
+max-width:99%;
+word-wrap: break-word !important;
+}
+
+#filter4 label  {
+max-width:99%;
+word-wrap: break-word !important;
+}
+
+#myCarousel .carousel-inner .row-fluid, #similar_app_list.carousel-inner .row-fluid{ 
+border:0px solid #fff;;
+}
+
+
+.disabled_ent {
+	opacity:0.3;
+}
+
+
+.ie8 .disabled_ent {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+}
+
+.glow_effect_text {
+}
+
+.small_app_details{
+	padding-left:2% !important;
+	margin: 0 !important;
+}
+
+.small_span_icon {
+	width:30% !important;
+	float:left !important;
+}
+
+.small_span_details {
+	float:left !important;
+	width:65% !important;
+	margin-left:3% !important;
+}
+
+.entitlement_page_details {
+	  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2) !important;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2)) !important;
+  background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2) !important;
+  background-image: -o-linear-gradient(top, #ffffff, #f2f2f2) !important;
+  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2) !important;
+  background-repeat: repeat-x;
+  border: 1px solid #d4d4d4;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+  *zoom: 1;
+ 	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	}
+	
+
+.filter_searchresult {
+	margin-top: -30px;
+	position:absolute;
+	padding:5px 20px;
+	right:10px;
+	background: #efefef;
+	-webkit-border-top-left-radius: 10px !important;
+	-webkit-border-top-right-radius: 10px !important;
+	-moz-border-radius-topleft: 10px !important;
+	-moz-border-radius-topright: 10px !important;
+	border-top-left-radius: 10px !important;
+	border-top-right-radius: 10px !important;
+}
+
+.concern {
+	
+	width:100% !important;
+	  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2) !important;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2)) !important;
+  background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2) !important;
+  background-image: -o-linear-gradient(top, #ffffff, #f2f2f2) !important;
+  background-image: linear-gradient(to bottom, #ffffff, #f2f2f2) !important;
+  background-repeat: repeat-x;
+  border: 1px solid #d4d4d4;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+  *zoom: 1;
+ 	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+#filter_toggle_mobile {
+	margin-bottom:10px !important;
+	}
+	
+.concern_Platform li , .searchprice li {
+	min-width:130px;
+}
+
+.concern_Platform {
+	float:left;
+}
+ .concern_Platform li{
+	 list-style:none;
+	float:left;
+	padding:0 5px;
+	
+}
+
+#concernContainer {
+	margin-top:40px;
+}

@@ -1,0 +1,351 @@
+/*
+ * #%L
+ * govapps_search
+ * $Id:$
+ * %%
+ * Copyright (C) 2013 - 2014 Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT
+ * %%
+ * Copyright (c) 2,013, Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ * 
+ * 1) Redistributions of source code must retain the above copyright notice, 
+ *    this list of conditions and the following disclaimer.
+ * 
+ * 2) Redistributions in binary form must reproduce the above copyright notice, 
+ *    this list of conditions and the following disclaimer in the documentation 
+ *    and/or other materials provided with the distribution.
+ * 
+ * 3) All advertising materials mentioning features or use of this software must 
+ *    display the following acknowledgement: 
+ *    This product includes software developed by Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT.
+ * 
+ * 4) Neither the name of the organization nor the names of its contributors may 
+ *    be used to endorse or promote products derived from this software without 
+ *    specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER ''AS IS'' AND ANY EXPRESS OR 
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+ * IN NO EVENT SHALL 
+ * Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * #L%
+ */
+/* Search portlet Fraunhofer FOKUS 2012
+*	Author 
+*/
+
+.ui-multiselect-menu {
+	display:none;
+}
+
+
+
+@media (min-width: 768px) and (max-width: 979px) {
+			 #mainnav{
+			padding-left:0px;
+		}
+		
+		
+		#advsearch .btn.btn-large.own, .dropdown-menu.searchcategories, .dropdown-menu.searchregions, .dropdown-menu.searchentitlements  {
+			padding-right: 0px !important;
+			width:90%;
+			text-align:left !important;
+			 -webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+		}
+		.btn-group {
+			width:33%;
+			vertical-align:top;
+			padding:0 !important;
+		
+		}
+		
+	input[type=search]{
+		width:95%;
+	}
+	
+	#advsearch .dropdown-menu   {
+		position:relative !important;
+		overflow:auto;
+		width:100%;
+		height:auto;
+	}
+	
+	.span12.hr{
+	display:none;
+	}
+
+	
+.searchios li , .searchprice li, .searchopendata li {
+	min-width:100px;
+}	
+
+}
+	
+@media (min-width: 1200px) {
+	
+	#mainnav{
+		padding-left:300px;
+	}
+	
+	
+	#advsearch .btn.btn-large.own, .dropdown-menu.searchcategories, .dropdown-menu.searchregions, .dropdown-menu.searchentitlements  {
+		padding-right: 0px !important;
+		width:90%;
+		text-align:left !important;
+	}
+	.btn-group {
+		width:33%;
+		vertical-align:top;
+		padding:0 !important;
+	
+	}
+	
+	#advsearch .btn-group {
+		padding-right:15px;
+	}
+	
+
+	#advsearch .dropdown-menu   {
+		position:absolute !important;
+		height:100px;
+		width:100%;
+		overflow-y:scroll;
+	}
+	
+	
+	.searchios li , .searchprice li, .searchopendata li {
+		min-width:100px;
+	}
+	
+
+	
+
+}
+
+
+@media (max-width: 767px) {
+	#mainnav{
+	padding-left:0px;
+	}
+
+	
+	#advsearch .btn.btn-large.own, .dropdown-menu.searchcategories, .dropdown-menu.searchregions, .dropdown-menu.searchentitlements  {
+		padding-right: 0px !important;
+		width:100%;
+		text-align:left !important;
+		padding-top:8px;
+		padding-bottom:8px;
+		 -webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	.btn-group {
+		width:100%;
+		vertical-align:top;
+		padding:0 !important;
+	
+	}
+	
+		#advsearch .btn-toolbar{ 
+		display:inline;
+	}
+
+	input[type=search]{
+		width:91%;
+	}
+	
+	#advsearch .dropdown-menu   {
+		position:relative !important;
+		height:auto;
+		width:100%;
+		overflow:auto;
+	}
+	
+	.span12.hr{
+	display:none;
+	}
+	
+	
+.searchios li , .searchprice li, .searchopendata li {
+	width:100%;
+	}
+	
+}
+	
+
+
+.container.head
+ {
+padding-bottom:0.8%;
+}
+
+/* ---------- Custom Bootstrap Search Form ---------- */
+
+
+.navbar.navbar-fixed-top {
+	z-index:12 !important
+}
+
+.typeahead.dropdown-menu {
+	z-index:99!important;
+}
+
+.dropdown .dropdown-toggle  {
+    color: 006293 !important;
+    font-size: 16px;
+}
+
+#dropdown-menu .dropdown-toggle li a {
+	font-size:15px !important;
+	color:#336699 !important;
+}
+
+#drop2 {
+	border-right:1px inset #aaa;
+	border-left:1px outset	#aaa;
+}
+
+
+.startsearch {
+	margin-left:-30px;
+	top:5px;
+}
+
+.startsearch img {
+	margin:-2px 0px 0 0;
+}
+
+.spacer {
+	float:left;
+	width:160px;
+	height:1px;
+	margin-left:0px !important; 
+}
+
+.dropdown-toggle.mycollapse   {
+	background:none !important;
+	box-shadow:none !important;
+	border:0 !important;
+	color:#5B677D;
+}
+
+.container.head .span12{
+	padding:0;
+	margin:0;
+}
+
+.searchcategories, .searchregions, .searchentitlements, .searchios, .searchprice {
+	float:left;
+}
+ .searchios li, .searchprice li, .searchopendata li {
+	 list-style:none;
+	float:left;
+	padding:0 5px;
+	
+}
+
+.searchcategories li, .searchregions li, .searchentitlements li {
+	padding:5px;
+}
+
+.form-search .nav, #mainnav .nav {
+	top:-4px !important;
+}
+
+#advsearchbtn {
+	margin-top:-4px;
+}
+
+
+
+
+.form-searchStr {
+	float:left;
+}
+
+.container.head{
+	margin-top:0px !important;
+}
+
+input[type=search]{
+    -webkit-appearance: none;
+    appearance: none;
+    margin:0px 0 5px 0 !important;
+}
+
+.btn.btn-large.own{  
+	-webkit-border-top-left-radius: 11px;
+	-webkit-border-bottom-left-radius: 11px;
+	-moz-border-radius-topleft: 11px;
+	-moz-border-radius-bottomleft: 11px;
+	border-top-left-radius: 11px;
+	border-bottom-left-radius: 11px;
+}
+.btn.btn-large.owntoogle {
+	-webkit-border-top-right-radius: 11px;
+	-webkit-border-bottom-right-radius: 11px;
+	-moz-border-radius-topright: 11px;
+	-moz-border-radius-bottomright: 11px;
+	border-top-right-radius: 11px;
+	border-bottom-right-radius: 11px;
+}
+
+#advsearch .caret {
+	border-top-color: #00628B!important;
+	border-bottom-color: #00628B !important;
+}
+
+ 
+ 
+ 
+.searchios , .searchprice, .searchopendata{
+	margin:0 ;
+}
+
+
+.searchios .ios, .searchprice .price, .searchopendata .opendata {
+	width:100px;
+	margin-top:0px;
+}
+
+.span12.hr{
+	height:1px;
+	width:100%;
+	background:transparent !important;
+  	border-top: 1px dotted #ccc !important;
+ 	 margin: 11px 0 !important; 
+}
+
+	
+.ie8 #searchform1x1 input[type="search"] {
+	width:350px;
+	}
+
+#searchform1x1 input[type="search"] {
+    border: 1px solid #CEDADE !important;
+    border-radius: 10px !important;
+    margin: -1px 0 0 5px;
+    padding:6px !important
+}
+
+#mainnav .dropdown {
+    border-right: 1px solid #EFEFEF;
+    padding: 0 10px;
+    margin-top:2px;
+}
+
+#mainnav .dropdown:last-child {
+    margin-right:5px;
+}
+
+

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_mvp_Application_EntitlementService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_Application_EntitlementSoap" type="java:de.fraunhofer.fokus.movepla.model.Application_EntitlementSoap[]" innerType="cmp-ns:Application_EntitlementSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:Application_EntitlementSoap" type="java:de.fraunhofer.fokus.movepla.model.Application_EntitlementSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getApplication_EntitlementsCount" qname="operNS:getApplication_EntitlementsCount" returnQName="getApplication_EntitlementsCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getApplication_Entitlements" qname="operNS:getApplication_Entitlements" returnQName="getApplication_EntitlementsReturn" returnType="rtns:ArrayOf_tns2_Application_EntitlementSoap" returnItemType="tns2:Application_EntitlementSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getApplication_Entitlements getApplication_EntitlementsCount" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.Application_EntitlementServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="Application_EntitlementServiceSoap" />
+		<parameter name="wsdlServiceElement" value="Application_EntitlementServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_Application_EntitlementService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+</deployment>

@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>de.fraunhofer.fokus.oefit</groupId>
+		<version>2.0.1</version>
+		<artifactId>govapps</artifactId>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>govapps_concern</artifactId>
+	<packaging>war</packaging>
+	<name>govapps_concern</name>
+
+	<properties>
+		<main.basedir>${project.parent.basedir}</main.basedir>
+		<license.descriptionTemplate>${project.parent.basedir}/src/license/fileDescription.ftl</license.descriptionTemplate>
+	</properties>
+
+	<build>
+		<finalName>Vepla-concern-Portlet-portlet</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.liferay.maven.plugins</groupId>
+				<artifactId>liferay-maven-plugin</artifactId>
+				<configuration>
+					<modelHintsFileName>${basedir}/src/main/resources/META-INF/ext/portlet-model-hints.xml</modelHintsFileName>
+					<pluginName>${project.build.finalName}</pluginName>
+					<pluginType>portlet</pluginType>
+					<webappBaseDir>${basedir}</webappBaseDir>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warSourceExcludes> **/portlet-model-hints.xml,**/tables.sql
+					</warSourceExcludes>
+					<webResources>
+						<resource>
+							<directory>${basedir}/src/main/resources/META-INF/ext</directory>
+							<targetPath>WEB-INF/classes/META-INF</targetPath>
+							<includes>
+								<include>*.xml</include>
+							</includes>
+						</resource>
+						<resource>
+							<directory>${basedir}/src/main/webapp/WEB-INF/sql/ext</directory>
+							<targetPath>WEB-INF/sql</targetPath>
+							<includes>
+								<include>*.sql</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+
+
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>portal-service</artifactId>
+			<scope>provided</scope>
+
+		</dependency>
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>util-bridges</artifactId>
+			<scope>provided</scope>
+
+		</dependency>
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>util-taglib</artifactId>
+			<scope>provided</scope>
+
+		</dependency>
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>util-java</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+</project>

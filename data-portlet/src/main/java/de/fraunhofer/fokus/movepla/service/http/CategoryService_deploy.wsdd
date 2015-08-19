@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_mvp_CategoryService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_CategorySoap" type="java:de.fraunhofer.fokus.movepla.model.CategorySoap[]" innerType="cmp-ns:CategorySoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:CategorySoap" type="java:de.fraunhofer.fokus.movepla.model.CategorySoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getAllCategories" qname="operNS:getAllCategories" returnQName="getAllCategoriesReturn" returnType="rtns:ArrayOf_tns2_CategorySoap" returnItemType="tns2:CategorySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getAllCategories" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.CategoryServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="CategoryServiceSoap" />
+		<parameter name="wsdlServiceElement" value="CategoryServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_CategoryService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+</deployment>

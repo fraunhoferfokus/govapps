@@ -1,0 +1,173 @@
+/*
+ * #%L
+ * govapps_data
+ * $Id:$
+ * %%
+ * Copyright (C) 2013 - 2014 Fraunhofer FOKUS / CC ÖFIT
+ * %%
+ * Copyright (c) 2,013, Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ * 
+ * 1) Redistributions of source code must retain the above copyright notice, 
+ *    this list of conditions and the following disclaimer.
+ * 
+ * 2) Redistributions in binary form must reproduce the above copyright notice, 
+ *    this list of conditions and the following disclaimer in the documentation 
+ *    and/or other materials provided with the distribution.
+ * 
+ * 3) All advertising materials mentioning features or use of this software must 
+ *    display the following acknowledgement: 
+ *    This product includes software developed by Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT.
+ * 
+ * 4) Neither the name of the organization nor the names of its contributors may 
+ *    be used to endorse or promote products derived from this software without 
+ *    specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER ''AS IS'' AND ANY EXPRESS OR 
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+ * IN NO EVENT SHALL 
+ * Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * #L%
+ */
+input[type=checkbox] {
+  width: 40px !important; }
+
+myButton {
+  width: 40px; }
+
+myInputClass {
+  width: 60px; }
+
+/*
+* MAX's global
+*/
+textarea {
+  background: none !important;
+  background-color: #ffffff !important; }
+
+/*
+
+ MAX's definitions, devel/view.jsp
+
+*/
+.bar-custom {
+  float: left;
+  border-left: 1px solid gray;
+  text-align: center;
+  width: 25%;
+  color: #999999;
+  height: 100%;
+  font-size: 12px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: width 0.6s ease;
+  -moz-transition: width 0.6s ease;
+  -o-transition: width 0.6s ease;
+  transition: width 0.6s ease; }
+
+.portlet-msg, .portlet-msg-error, .portlet-msg-success, .portlet-msg-info {
+  background-repeat: no-repeat !important;
+  background-position: left !important;
+  padding-left: 25px;
+  padding-top: 2px;
+  padding-bottom: 2px; }
+
+.portlet-msg-error {
+  color: #5f1313 !important;
+  background-color: #ff9999 !important; }
+
+.portlet-msg-success {
+  color: #5f1313 !important;
+  background-color: #6caa47 !important; }
+
+.app-search-row-even {
+  /*padding: 10px 0px;*/
+  background-color: #e3e3e3; }
+
+.app-search-row-odd {
+  /*padding: 10px 0px;*/
+  background-color: #eaeaea; }
+
+.app-search-row-odd:HOVER {
+  background-color: #f3f3f3; }
+
+.app-search-row-even:HOVER {
+  background-color: #ffffff; }
+
+/*
+.logo {
+    width: 60px;
+    max-width: 60px;
+}
+*/
+.tdpad {
+  /*
+  padding-left: 20px;
+  padding-right: 20px;
+  */ }
+
+div table th {
+  background-color: #f6f6f6; }
+
+#application {
+  padding-bottom: 60px; }
+
+/*
+
+ MAX's definitions, devel/application_view.jsp
+
+*/
+.float-none {
+  float: right;
+  clear: both;
+  min-width: 100%;
+  min-height: 10px;
+  /*border: 1px solid blue;*/ }
+
+.unitbox-left {
+  float: left;
+  width: 65%; }
+
+.unit {
+  width: 90%;
+  /*border: 1px solid green;*/
+  padding: 20px 20px !important;
+  margin-top: 0px !important;
+  margin-bottom: 30px !important;
+  margin-left: 0px !important;
+  margin-right: 20px !important; }
+
+.unitbox-right {
+  float: left;
+  width: 30%; }
+
+.small-img {
+  margin: 5px 10px;
+  float: left;
+  min-width: 30px; }
+
+/*
+
+ MAX's definitions, devel/add_application_preamble.jsp
+
+*/
+.ordered-info {
+  font-size: medium; }
+
+.ordered-info li {
+  margin-bottom: 10px; }
+

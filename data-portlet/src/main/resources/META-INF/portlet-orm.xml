@@ -1,0 +1,361 @@
+<?xml version="1.0"?>
+<!--
+  #%L
+  govapps_data
+  $Id:$
+  %%
+  Copyright (C) 2013 - 2014 Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT
+  %%
+  Copyright (c) 2,013, Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+  All rights reserved.
+  Redistribution and use in source and binary forms, with or without modification,
+  are permitted provided that the following conditions are met:
+  
+  1) Redistributions of source code must retain the above copyright notice, 
+     this list of conditions and the following disclaimer.
+  
+  2) Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.
+  
+  3) All advertising materials mentioning features or use of this software must 
+     display the following acknowledgement: 
+     This product includes software developed by Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT.
+  
+  4) Neither the name of the organization nor the names of its contributors may 
+     be used to endorse or promote products derived from this software without 
+     specific prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER ''AS IS'' AND ANY EXPRESS OR 
+  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  IN NO EVENT SHALL Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT BE LIABLE FOR ANY DIRECT, INDIRECT, 
+  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  #L%
+  -->
+
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.ApplicationModelImpl">
+		<attributes>
+			<id name="applicationId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="version" />
+			<basic name="versionInformation" />
+			<basic name="size">
+				<column name="SIZE_" />
+			</basic>
+			<basic name="firstPublishingDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="lastModifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="logoImageId" />
+			<basic name="fee" />
+			<basic name="targetOS" />
+			<basic name="minTargetOSVersion" />
+			<basic name="targetCategory" />
+			<basic name="lifeCycleStatus" />
+			<basic name="verifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="categoryString" />
+			<basic name="regionString" />
+			<basic name="lifeCycleStatusString" />
+			<basic name="legalDetails" />
+			<basic name="developer" />
+			<basic name="detailsViewed" />
+			<basic name="linkClicked" />
+			<basic name="useOpenData" />
+			<basic name="Sector" />
+			<basic name="License" />
+			<basic name="relatedApplicationId" />
+			<basic name="newVersionId" />
+			<basic name="oldVersionId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.Application_EntitlementModelImpl">
+		<attributes>
+			<id name="applicationEntitlementID" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="name" />
+			<basic name="motivation" />
+			<basic name="applicationId" />
+			<basic name="entitlementId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.CategoryModelImpl">
+		<attributes>
+			<id name="categoryId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="categoryName" />
+			<basic name="parentCategory" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.EntitlementModelImpl">
+		<attributes>
+			<id name="entitlementId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="entitlementName" />
+			<basic name="explanation" />
+			<basic name="estimation" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.LanguageModelImpl">
+		<attributes>
+			<id name="LanguageId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="languageName" />
+			<basic name="languageAbbreviation" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.LegalDetailsModelImpl">
+		<attributes>
+			<id name="legalDetailsId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="name" />
+			<basic name="valueAddedTaxNo" />
+			<basic name="registrationCourt" />
+			<basic name="legalForm" />
+			<basic name="address" />
+			<basic name="telephone" />
+			<basic name="email" />
+			<basic name="URL" />
+			<basic name="fax" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.LinkModelImpl">
+		<attributes>
+			<id name="linkId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="displayName" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="url" />
+			<basic name="applicationId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.LoggingModelImpl">
+		<attributes>
+			<id name="loggingId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="isSimpleSearch" />
+			<basic name="searchString" />
+			<basic name="categoryIDString" />
+			<basic name="regionIDString" />
+			<basic name="entitlementIDString" />
+			<basic name="targetOS" />
+			<basic name="fee" />
+			<basic name="targetCategory" />
+			<basic name="passel" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.MultiMediaModelImpl">
+		<attributes>
+			<id name="multiMediaId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="name" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="imageId" />
+			<basic name="applicationId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.RegionModelImpl">
+		<attributes>
+			<id name="regionId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="name" />
+			<basic name="ags" />
+			<basic name="coordniates_x" />
+			<basic name="coordniates_y" />
+			<basic name="parentRegion" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="de.fraunhofer.fokus.movepla.model.impl.RelatedApplicationsModelImpl">
+		<attributes>
+			<id name="RelatedApplicationsID" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="applicationId" />
+			<basic name="applicationId2" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.ApplicationImpl" name="Application">
+		<table name="mvp_Application" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.Application_EntitlementImpl" name="Application_Entitlement">
+		<table name="mvp_Application_Entitlement" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.CategoryImpl" name="Category">
+		<table name="mvp_Category" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.EntitlementImpl" name="Entitlement">
+		<table name="mvp_Entitlement" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.LanguageImpl" name="Language">
+		<table name="mvp_Language" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.LegalDetailsImpl" name="LegalDetails">
+		<table name="mvp_LegalDetails" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.LinkImpl" name="Link">
+		<table name="mvp_Link" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.LoggingImpl" name="Logging">
+		<table name="mvp_Logging" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.MultiMediaImpl" name="MultiMedia">
+		<table name="mvp_MultiMedia" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.RegionImpl" name="Region">
+		<table name="mvp_Region" />
+		<attributes />
+	</entity>
+	<entity class="de.fraunhofer.fokus.movepla.model.impl.RelatedApplicationsImpl" name="RelatedApplications">
+		<table name="mvp_RelatedApplications" />
+		<attributes />
+	</entity>
+</entity-mappings>

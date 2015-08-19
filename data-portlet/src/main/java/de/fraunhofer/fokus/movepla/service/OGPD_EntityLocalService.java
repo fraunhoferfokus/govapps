@@ -1,0 +1,107 @@
+package de.fraunhofer.fokus.movepla.service;
+
+/*
+ * #%L
+ * govapps_data
+ * $Id: OGPD_EntityLocalService.java 566 2014-11-13 15:22:01Z sma $
+ * %%
+ * Copyright (C) 2013 - 2014 Fraunhofer FOKUS / CC ÖFIT
+ * %%
+ * Copyright (c) 2,013, Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+ * All rights reserved.
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ * 
+ * 1) Redistributions of source code must retain the above copyright notice, 
+ *    this list of conditions and the following disclaimer.
+ * 
+ * 2) Redistributions in binary form must reproduce the above copyright notice, 
+ *    this list of conditions and the following disclaimer in the documentation 
+ *    and/or other materials provided with the distribution.
+ * 
+ * 3) All advertising materials mentioning features or use of this software must 
+ *    display the following acknowledgement: 
+ *    This product includes software developed by Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT.
+ * 
+ * 4) Neither the name of the organization nor the names of its contributors may 
+ *    be used to endorse or promote products derived from this software without 
+ *    specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER ''AS IS'' AND ANY EXPRESS OR 
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+ * IN NO EVENT SHALL 
+ * Fraunhofer FOKUS, Kompetenzzentrum Oeffentliche IT 
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT 
+ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * #L%
+ */
+
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
+import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.service.BaseLocalService;
+import com.liferay.portal.service.InvokableLocalService;
+
+/**
+ * The interface for the o g p d_ entity local service.
+ *
+ * <p>
+ * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * </p>
+ *
+ * @author jpa
+ * @see OGPD_EntityLocalServiceUtil
+ * @see de.fraunhofer.fokus.movepla.service.base.OGPD_EntityLocalServiceBaseImpl
+ * @see de.fraunhofer.fokus.movepla.service.impl.OGPD_EntityLocalServiceImpl
+ * @generated
+ */
+@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
+    PortalException.class, SystemException.class}
+)
+public interface OGPD_EntityLocalService extends BaseLocalService,
+    InvokableLocalService {
+    /*
+     * NOTE FOR DEVELOPERS:
+     *
+     * Never modify or reference this interface directly. Always use {@link OGPD_EntityLocalServiceUtil} to access the o g p d_ entity local service. Add custom service methods to {@link de.fraunhofer.fokus.movepla.service.impl.OGPD_EntityLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+     */
+
+    /**
+    * Returns the Spring bean ID for this bean.
+    *
+    * @return the Spring bean ID for this bean
+    */
+    public java.lang.String getBeanIdentifier();
+
+    /**
+    * Sets the Spring bean ID for this bean.
+    *
+    * @param beanIdentifier the Spring bean ID for this bean
+    */
+    public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+    public java.lang.Object invokeMethod(java.lang.String name,
+        java.lang.String[] parameterTypes, java.lang.Object[] arguments)
+        throws java.lang.Throwable;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.liferay.portal.kernel.json.JSONArray getOGPD_Entities();
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.liferay.portal.kernel.json.JSONArray getRegionEntitiesForWidget(
+        java.lang.String regionID);
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.liferay.portal.kernel.json.JSONArray getRegionEntitiesForWidgetParamFirst(
+        java.lang.String regionID, java.lang.String name);
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.liferay.portal.kernel.json.JSONArray getOpenDataEntitiesForWidget();
+}

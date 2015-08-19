@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_mvp_EntitlementService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_EntitlementSoap" type="java:de.fraunhofer.fokus.movepla.model.EntitlementSoap[]" innerType="cmp-ns:EntitlementSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_apachesoap_Vector" type="java:java.lang.Object[][]" innerType="cmp-ns:anyType" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:EntitlementSoap" type="java:de.fraunhofer.fokus.movepla.model.EntitlementSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getEntitlements" qname="operNS:getEntitlements" returnQName="getEntitlementsReturn" returnType="rtns:ArrayOf_tns2_EntitlementSoap" returnItemType="tns2:EntitlementSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://www.w3.org/2001/XMLSchema" name="getRegionsCategoriesEntitlements" qname="operNS:getRegionsCategoriesEntitlements" returnQName="getRegionsCategoriesEntitlementsReturn" returnType="rtns:ArrayOf_apachesoap_Vector" returnItemType="tns2:anyType" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getEntitlements getRegionsCategoriesEntitlements" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.EntitlementServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="EntitlementServiceSoap" />
+		<parameter name="wsdlServiceElement" value="EntitlementServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_EntitlementService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+</deployment>

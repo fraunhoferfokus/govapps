@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<globalConfiguration>
+		<parameter name="adminPassword" value="admin" />
+		<parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl" />
+		<parameter name="sendXsiTypes" value="true" />
+		<parameter name="sendMultiRefs" value="true" />
+		<parameter name="sendXMLDeclaration" value="true" />
+		<parameter name="axis.sendMinimizedElements" value="true" />
+		<requestFlow>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="session" />
+			</handler>
+			<handler type="java:org.apache.axis.handlers.JWSHandler">
+				<parameter name="scope" value="request" />
+				<parameter name="extension" value=".jwr" />
+			</handler>
+		</requestFlow>
+	</globalConfiguration>
+	<handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder" />
+	<handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper" />
+	<handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler" />
+	<transport name="http">
+		<requestFlow>
+			<handler type="URLMapper" />
+			<handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler" />
+		</requestFlow>
+	</transport>
+	<transport name="local">
+		<responseFlow>
+			<handler type="LocalResponder" />
+		</responseFlow>
+	</transport>
+	<service name="Plugin_mvp_ApplicationService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_ApplicationSoap" type="java:de.fraunhofer.fokus.movepla.model.ApplicationSoap[]" innerType="cmp-ns:ApplicationSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_apachesoap_Vector" type="java:java.lang.Object[][]" innerType="cmp-ns:anyType" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_long" type="java:long[]" innerType="cmp-ns:long" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_string" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ApplicationSoap" type="java:de.fraunhofer.fokus.movepla.model.ApplicationSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://xml.apache.org/xml-soap" name="getApplicationDetailsEIS" qname="operNS:getApplicationDetailsEIS" returnQName="getApplicationDetailsEISReturn" returnType="rtns:Vector" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="applicationId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://xml.apache.org/xml-soap" name="getApplicationDetailsEI" qname="operNS:getApplicationDetailsEI" returnQName="getApplicationDetailsEIReturn" returnType="rtns:Vector" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="applicationId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getApplicationWithRelatedAppswithDifferentDevelopers" qname="operNS:getApplicationWithRelatedAppswithDifferentDevelopers" returnQName="getApplicationWithRelatedAppswithDifferentDevelopersReturn" returnType="rtns:ArrayOf_tns2_ApplicationSoap" returnItemType="tns2:ApplicationSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getApplicationWithTooManyRelatedApps" qname="operNS:getApplicationWithTooManyRelatedApps" returnQName="getApplicationWithTooManyRelatedAppsReturn" returnType="rtns:ArrayOf_tns2_ApplicationSoap" returnItemType="tns2:ApplicationSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getApplicationXML4Verification" qname="operNS:getApplicationXML4Verification" returnQName="getApplicationXML4VerificationReturn" returnType="rtns:string" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getApplications4Verification" qname="operNS:getApplications4Verification" returnQName="getApplications4VerificationReturn" returnType="rtns:ArrayOf_tns2_ApplicationSoap" returnItemType="tns2:ApplicationSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getApplicationsCount" qname="operNS:getApplicationsCount" returnQName="getApplicationsCountReturn" returnType="rtns:int" soapAction=""> </operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getApplicationsCount" qname="operNS:getApplicationsCount" returnQName="getApplicationsCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getApplicationsFromSamePublisher" qname="operNS:getApplicationsFromSamePublisher" returnQName="getApplicationsFromSamePublisherReturn" returnType="rtns:ArrayOf_tns2_ApplicationSoap" returnItemType="tns2:ApplicationSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getApplications" qname="operNS:getApplications" returnQName="getApplicationsReturn" returnType="rtns:ArrayOf_tns2_ApplicationSoap" returnItemType="tns2:ApplicationSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getApplications" qname="operNS:getApplications" returnQName="getApplicationsReturn" returnType="rtns:ArrayOf_tns2_ApplicationSoap" returnItemType="tns2:ApplicationSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://xml.apache.org/xml-soap" name="getFullApplicationDetailsEISCRLLA" qname="operNS:getFullApplicationDetailsEISCRLLA" returnQName="getFullApplicationDetailsEISCRLLAReturn" returnType="rtns:Vector" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="applicationId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://xml.apache.org/xml-soap" name="getFullSearchApplications" qname="operNS:getFullSearchApplications" returnQName="getFullSearchApplicationsReturn" returnType="rtns:Vector" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="keywords" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="requiredCategoryIds" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="requiredRegionIds" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="permittedApplicationEntitlementIds" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="requiredTargetOS" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fee" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getIconURL" qname="operNS:getIconURL" returnQName="getIconURLReturn" returnType="rtns:string" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="applicationId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://www.w3.org/2001/XMLSchema" name="getImageURLs" qname="operNS:getImageURLs" returnQName="getImageURLsReturn" returnType="rtns:ArrayOf_xsd_string" returnItemType="tns2:string" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="applicationId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getLinkDoubles" qname="operNS:getLinkDoubles" returnQName="getLinkDoublesReturn" returnType="rtns:ArrayOf_tns2_ApplicationSoap" returnItemType="tns2:ApplicationSoap" soapAction=""> </operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://xml.apache.org/xml-soap" name="getNewApplications" qname="operNS:getNewApplications" returnQName="getNewApplicationsReturn" returnType="rtns:Vector" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="year" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="month" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="day" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="count" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://www.w3.org/2001/XMLSchema" name="getRelatedApplications" qname="operNS:getRelatedApplications" returnQName="getRelatedApplicationsReturn" returnType="rtns:ArrayOf_xsd_long" returnItemType="tns2:long" soapAction=""> </operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://xml.apache.org/xml-soap" name="getSimilarApplications" qname="operNS:getSimilarApplications" returnQName="getSimilarApplicationsReturn" returnType="rtns:Vector" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="applicationId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="byCategory" type="tns:boolean"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="byRegion" type="tns:boolean"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" name="removeWhitespaceFromTargetOS" qname="operNS:removeWhitespaceFromTargetOS" soapAction=""> </operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://xml.apache.org/xml-soap" name="searchApplications" qname="operNS:searchApplications" returnQName="searchApplicationsReturn" returnType="rtns:Vector" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="keywords" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://xml.apache.org/xml-soap" name="search" qname="operNS:search" returnQName="searchReturn" returnType="rtns:Vector" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="keywords" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="requiredCategoryIds" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="requiredRegionIds" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="permittedApplicationEntitlementIds" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="requiredTargetOS" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fee" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://www.w3.org/2001/XMLSchema" name="searchbak" qname="operNS:searchbak" returnQName="searchbakReturn" returnType="rtns:ArrayOf_apachesoap_Vector" returnItemType="tns2:anyType" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="keywords" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="requiredCategoryIds" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="requiredRegionIds" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="permittedApplicationEntitlementIds" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="requiredTargetOS" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="fee" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" name="updateStatusString" qname="operNS:updateStatusString" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getApplicationDetailsEI getApplicationDetailsEIS getApplicationWithRelatedAppswithDifferentDevelopers getApplicationWithTooManyRelatedApps getApplicationXML4Verification getApplications getApplications4Verification getApplicationsCount getApplicationsFromSamePublisher getFullApplicationDetailsEISCRLLA getFullSearchApplications getIconURL getImageURLs getLinkDoubles getNewApplications getRelatedApplications getSimilarApplications removeWhitespaceFromTargetOS search searchApplications searchbak updateStatusString" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.ApplicationServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,http://xml.apache.org/xml-soap,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="ApplicationServiceSoap" />
+		<parameter name="wsdlServiceElement" value="ApplicationServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_ApplicationService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+	<service name="Plugin_mvp_Application_EntitlementService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_Application_EntitlementSoap" type="java:de.fraunhofer.fokus.movepla.model.Application_EntitlementSoap[]" innerType="cmp-ns:Application_EntitlementSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:Application_EntitlementSoap" type="java:de.fraunhofer.fokus.movepla.model.Application_EntitlementSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getApplication_EntitlementsCount" qname="operNS:getApplication_EntitlementsCount" returnQName="getApplication_EntitlementsCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getApplication_Entitlements" qname="operNS:getApplication_Entitlements" returnQName="getApplication_EntitlementsReturn" returnType="rtns:ArrayOf_tns2_Application_EntitlementSoap" returnItemType="tns2:Application_EntitlementSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getApplication_Entitlements getApplication_EntitlementsCount" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.Application_EntitlementServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="Application_EntitlementServiceSoap" />
+		<parameter name="wsdlServiceElement" value="Application_EntitlementServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_Application_EntitlementService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+	<service name="Plugin_mvp_CategoryService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_CategorySoap" type="java:de.fraunhofer.fokus.movepla.model.CategorySoap[]" innerType="cmp-ns:CategorySoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:CategorySoap" type="java:de.fraunhofer.fokus.movepla.model.CategorySoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getAllCategories" qname="operNS:getAllCategories" returnQName="getAllCategoriesReturn" returnType="rtns:ArrayOf_tns2_CategorySoap" returnItemType="tns2:CategorySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getAllCategories" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.CategoryServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="CategoryServiceSoap" />
+		<parameter name="wsdlServiceElement" value="CategoryServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_CategoryService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+	<service name="Plugin_mvp_EntitlementService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_EntitlementSoap" type="java:de.fraunhofer.fokus.movepla.model.EntitlementSoap[]" innerType="cmp-ns:EntitlementSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_apachesoap_Vector" type="java:java.lang.Object[][]" innerType="cmp-ns:anyType" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:EntitlementSoap" type="java:de.fraunhofer.fokus.movepla.model.EntitlementSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getEntitlements" qname="operNS:getEntitlements" returnQName="getEntitlementsReturn" returnType="rtns:ArrayOf_tns2_EntitlementSoap" returnItemType="tns2:EntitlementSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://www.w3.org/2001/XMLSchema" name="getRegionsCategoriesEntitlements" qname="operNS:getRegionsCategoriesEntitlements" returnQName="getRegionsCategoriesEntitlementsReturn" returnType="rtns:ArrayOf_apachesoap_Vector" returnItemType="tns2:anyType" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getEntitlements getRegionsCategoriesEntitlements" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.EntitlementServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="EntitlementServiceSoap" />
+		<parameter name="wsdlServiceElement" value="EntitlementServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_EntitlementService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+	<service name="Plugin_mvp_LanguageService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.LanguageServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="LanguageServiceSoap" />
+		<parameter name="wsdlServiceElement" value="LanguageServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_LanguageService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+	<service name="Plugin_mvp_LegalDetailsService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.LegalDetailsServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="LegalDetailsServiceSoap" />
+		<parameter name="wsdlServiceElement" value="LegalDetailsServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_LegalDetailsService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+	<service name="Plugin_mvp_LinkService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="allowedMethods" value="*" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.LinkServiceSoap" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="LinkServiceSoap" />
+		<parameter name="wsdlServiceElement" value="LinkServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_LinkService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+	<service name="Plugin_mvp_MultiMediaService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_MultiMediaSoap" type="java:de.fraunhofer.fokus.movepla.model.MultiMediaSoap[]" innerType="cmp-ns:MultiMediaSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:MultiMediaSoap" type="java:de.fraunhofer.fokus.movepla.model.MultiMediaSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="countMultiMedias" qname="operNS:countMultiMedias" returnQName="countMultiMediasReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="findByc" qname="operNS:findByc" returnQName="findBycReturn" returnType="rtns:ArrayOf_tns2_MultiMediaSoap" returnItemType="tns2:MultiMediaSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="countMultiMedias findByc" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.MultiMediaServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="MultiMediaServiceSoap" />
+		<parameter name="wsdlServiceElement" value="MultiMediaServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_MultiMediaService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+	<service name="Plugin_mvp_RegionService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:cmp-ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:ArrayOf_tns2_RegionSoap" type="java:de.fraunhofer.fokus.movepla.model.RegionSoap[]" innerType="cmp-ns:RegionSoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.movepla.fokus.fraunhofer.de" qname="ns:RegionSoap" type="java:de.fraunhofer.fokus.movepla.model.RegionSoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:rtns="urn:http.service.movepla.fokus.fraunhofer.de" xmlns:tns2="http://model.movepla.fokus.fraunhofer.de" name="getAllRegions" qname="operNS:getAllRegions" returnQName="getAllRegionsReturn" returnType="rtns:ArrayOf_tns2_RegionSoap" returnItemType="tns2:RegionSoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="getAllRegions" />
+		<parameter name="className" value="de.fraunhofer.fokus.movepla.service.http.RegionServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.movepla.fokus.fraunhofer.de,urn:http.service.movepla.fokus.fraunhofer.de" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="RegionServiceSoap" />
+		<parameter name="wsdlServiceElement" value="RegionServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_mvp_RegionService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.movepla.fokus.fraunhofer.de" />
+	</service>
+</deployment>
